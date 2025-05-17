@@ -41,7 +41,7 @@ public class SimplePong extends JPanel {
         }
     }
 
-    // Paddle Class
+    // Paddle Class (found from a youtube tutorial)
     static class Paddle {
         private int x, y, width, height;
         private static final int PADDLE_WIDTH = 20;
@@ -68,7 +68,7 @@ public class SimplePong extends JPanel {
         public int getHeight() { return height; }
     }
 
-    // GameState Class (for scores and ball reset)
+    // GameState Class (for scores and ball reset) (Also found from YouTube)
     static class GameState {
         public int player1Score;
         public int player2Score;
@@ -139,7 +139,7 @@ public class SimplePong extends JPanel {
         }
     }
 
-    // Main Game Class with logic, collision detection, etc.
+    // Main Game Class with logic, collision detection, etc. (This is where 3 algorithms are present)
     private Paddle paddleLeft, paddleRight;
     private Ball ball;
     private GameState gameState;
@@ -184,12 +184,12 @@ public class SimplePong extends JPanel {
     private void moveBall() {
         // Save current game state before ball moves
         stateStack.pushState(new GameState()); // Save before movement
-        ball.move();
+        ball.move(); // 1st Algorithm being Ball Movement
         ballHistory.append(ball.getX(), ball.getY());
     }
 
     private void checkCollisions() {
-        // Collision with top/bottom
+        // Collision with top/bottom (2nd Algorithm being collision)
         if (ball.getY() <= 0 || ball.getY() >= 590) {
             ball.bounceVertical();
         }
@@ -202,7 +202,7 @@ public class SimplePong extends JPanel {
             ball.bounceHorizontal();
         }
 
-        // Scoring
+        // Scoring (3rd Algorithm being Score Update.)
         if (ball.getX() <= 0) {
             gameState.player2Score++;
             gameState.resetBall();
